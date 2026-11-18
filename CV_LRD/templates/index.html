@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ cv.nombre }} — {{ cv.titulo }}</title>
+  <meta name="description" content="{{ cv.resumen }}" />
+  <meta name="keywords" content="Analista Funcional, Data Analyst, Analista de Datos, SQL, BigQuery, Power BI, Looker Studio, ETL, Python, Telecom, NOC, ITSM, Product Backlog" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Datos estructurados para motores de búsqueda e IA de reclutamiento (ATS) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ cv.nombre }}",
+    "jobTitle": "{{ cv.titulo }}",
+    "email": "mailto:{{ cv.email }}",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Ciudadela",
+      "addressRegion": "Buenos Aires",
+      "addressCountry": "AR"
+    },
+    "sameAs": [
+      "{{ cv.linkedin }}",
+      "{{ cv.github }}"
+    ],
+    "knowsAbout": [
+      "Data Analytics", "Business Intelligence", "SQL", "Google BigQuery",
+      "Power BI", "Looker Studio", "ETL", "Functional Analysis",
+      "Product Backlog", "BMC Helix ITSM", "Salesforce", "Python", "Generative AI"
+    ]
+  }
+  </script>
+
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #ffffff !important; color: #0f172a !important; font-size: 11pt; }
+      .shadow-sm, .shadow { box-shadow: none !important; }
+      section { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-900 selection:text-white">
+
+  <!-- Barra superior de navegación rápida -->
+  <header class="no-print sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between text-sm">
+      <a href="#" class="font-bold text-slate-900 tracking-tight">LRD <span class="text-blue-800 font-medium">| Data & Functional</span></a>
+      <nav class="hidden md:flex items-center gap-6 text-slate-600 font-medium">
+        <a href="#perfil" class="hover:text-blue-800">Perfil</a>
+        <a href="#skills" class="hover:text-blue-800">Competencias</a>
+        <a href="#experiencia" class="hover:text-blue-800">Experiencia</a>
+        <a href="#proyectos" class="hover:text-blue-800">Proyectos</a>
+        <a href="#certificaciones" class="hover:text-blue-800">Certificaciones</a>
+      </nav>
+      <button onclick="window.print()" class="bg-blue-900 hover:bg-blue-800 text-white px-3.5 py-1.5 rounded-md font-medium text-xs transition cursor-pointer">
+        Guardar PDF (ATS)
+      </button>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 space-y-10">
+
+    <!-- Cabecera Ejecutiva -->
+    <section id="perfil" class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-sm">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 border-b border-slate-100 pb-6">
+        <div>
+          <span class="inline-block text-xs font-semibold uppercase tracking-wider text-blue-800 bg-blue-50 px-2.5 py-1 rounded mb-2">
+            Disponible para roles de Análisis de Datos / BI / Análisis Funcional
+          </span>
+          <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">{{ cv.nombre }}</h1>
+          <p class="text-lg font-medium text-blue-900 mt-1">{{ cv.titulo }}</p>
+          <p class="text-sm text-slate-500 mt-2">{{ cv.ubicacion }}</p>
+        </div>
+        <div class="flex flex-wrap md:flex-col gap-2 text-sm">
+          <a href="mailto:{{ cv.email }}" class="inline-flex items-center gap-2 text-slate-700 hover:text-blue-800 font-medium">
+            <span>✉</span> {{ cv.email }}
+          </a>
+          <a href="{{ cv.linkedin }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-slate-700 hover:text-blue-800 font-medium">
+            <span>in</span> linkedin.com/in/lrd70
+          </a>
+          <a href="{{ cv.github }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-slate-700 hover:text-blue-800 font-medium">
+            <span>⌘</span> github.com/Lwiggi
+          </a>
+        </div>
+      </div>
+
+      <!-- Resumen -->
+      <p class="mt-6 text-slate-700 leading-relaxed text-[15px]">
+        {{ cv.resumen }}
+      </p>
+
+      <!-- Tarjetas KPI -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
+        {% for kpi in cv.kpis %}
+        <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3.5">
+          <div class="text-xl font-bold text-blue-900">{{ kpi.valor }}</div>
+          <div class="text-xs text-slate-600 mt-0.5 leading-snug">{{ kpi.etiqueta }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Matriz de Competencias -->
+    <section id="skills" class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-2 mb-5">
+        Competencias Técnicas y Funcionales
+      </h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {% for categoria, items in cv.skills.items() %}
+        <div>
+          <h3 class="text-sm font-bold text-blue-900 mb-3">{{ categoria }}</h3>
+          <ul class="space-y-1.5">
+            {% for skill in items %}
+            <li class="text-sm text-slate-700 flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-700 shrink-0"></span>
+              <span>{{ skill }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Experiencia Profesional -->
+    <section id="experiencia" class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-2 mb-6">
+        Experiencia Profesional
+      </h2>
+      <div class="space-y-7">
+        {% for exp in cv.experiencia %}
+        <article class="relative pl-4 border-l-2 border-blue-900/30">
+          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+            <h3 class="text-base font-bold text-slate-900">{{ exp.rol }}</h3>
+            <span class="text-xs font-semibold text-blue-900 bg-blue-50 px-2.5 py-0.5 rounded shrink-0">
+              {{ exp.periodo }}
+            </span>
+          </div>
+          <div class="text-sm font-medium text-slate-600 mt-0.5">
+            {{ exp.empresa }} · <span class="text-slate-400 font-normal">{{ exp.ubicacion }}</span>
+          </div>
+          <ul class="mt-2.5 space-y-1.5 text-sm text-slate-700 list-disc list-inside">
+            {% for logro in exp.logros %}
+            <li class="leading-relaxed">{{ logro }}</li>
+            {% endfor %}
+          </ul>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Proyectos y Dashboards -->
+    <section id="proyectos" class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-2 mb-5">
+        Dashboards y Proyectos Aplicados
+      </h2>
+      <div class="grid md:grid-cols-3 gap-4">
+        {% for proy in cv.proyectos %}
+        <div class="border border-slate-200 rounded-lg p-4 flex flex-col justify-between hover:border-blue-400 transition">
+          <div>
+            <span class="text-[11px] font-semibold uppercase tracking-wider text-blue-800">{{ proy.categoria }}</span>
+            <h3 class="font-bold text-slate-900 mt-1">{{ proy.nombre }}</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">{{ proy.descripcion }}</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100">
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              {% for tag in proy.tags %}
+              <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded">{{ tag }}</span>
+              {% endfor %}
+            </div>
+            <div class="flex items-center gap-3 text-xs font-semibold">
+              <a href="{{ proy.url }}" target="_blank" rel="noopener" class="text-blue-800 hover:underline">Ver demo →</a>
+              {% if proy.repo %}
+              <a href="{{ proy.repo }}" target="_blank" rel="noopener" class="text-slate-600 hover:underline">Código GitHub</a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Certificaciones Filtrables -->
+    <section id="certificaciones" class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-200 pb-3 mb-5">
+        <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wider">
+          Certificaciones y Formación Continua
+        </h2>
+        <div class="no-print flex flex-wrap gap-1.5 text-xs" id="filtros-cert">
+          <button data-filter="Todas" class="filter-btn bg-blue-900 text-white px-2.5 py-1 rounded font-medium cursor-pointer">Todas</button>
+          <button data-filter="Datos" class="filter-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-2.5 py-1 rounded font-medium cursor-pointer">Datos & BI</button>
+          <button data-filter="IA" class="filter-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-2.5 py-1 rounded font-medium cursor-pointer">IA</button>
+          <button data-filter="Funcional" class="filter-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-2.5 py-1 rounded font-medium cursor-pointer">Funcional</button>
+          <button data-filter="Dev" class="filter-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-2.5 py-1 rounded font-medium cursor-pointer">Desarrollo</button>
+        </div>
+      </div>
+
+      <div class="divide-y divide-slate-100" id="lista-certificaciones">
+        {% for cert in cv.certificaciones %}
+        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="{{ cert.categoria }}">
+          <div class="flex items-center gap-2.5">
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700 w-20 text-center shrink-0">
+              {{ cert.categoria }}
+            </span>
+            <span class="text-slate-800 font-medium">{{ cert.titulo }}</span>
+          </div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">{{ cert.anio }}</span>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Educación Formal -->
+    <section class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-sm">
+      <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-2 mb-4">
+        Educación Formal
+      </h2>
+      <div class="grid sm:grid-cols-2 gap-4">
+        {% for edu in cv.educacion %}
+        <div>
+          <h3 class="text-sm font-bold text-slate-900">{{ edu.titulo }}</h3>
+          <p class="text-xs text-slate-600 mt-0.5">{{ edu.institucion }} · {{ edu.periodo }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="no-print text-center text-xs text-slate-400 py-8">
+    {{ cv.nombre }} · Desarrollado en Python (FastAPI) & Tailwind CSS · Desplegado en Vercel
+  </footer>
+
+  <script>
+    const buttons = document.querySelectorAll('.filter-btn');
+    const items = document.querySelectorAll('.cert-item');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        buttons.forEach(b => {
+          b.classList.remove('bg-blue-900', 'text-white');
+          b.classList.add('bg-slate-100', 'text-slate-700');
+        });
+        btn.classList.add('bg-blue-900', 'text-white');
+        btn.classList.remove('bg-slate-100', 'text-slate-700');
+
+        items.forEach(item => {
+          item.style.display = (filter === 'Todas' || item.dataset.cat === filter) ? 'flex' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>
