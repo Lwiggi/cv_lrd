@@ -3,19 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ cv.nombre }} — {{ cv.titulo }}</title>
-  <meta name="description" content="{{ cv.resumen }}" />
-  <meta name="keywords" content="Analista Funcional, Data Analyst, Analista de Datos, SQL, BigQuery, Power BI, Looker Studio, ETL, Python, Telecom, NOC, ITSM, Product Backlog" />
+  <title>Luis Alberto Ruiz Diaz — Analista Funcional & de Datos</title>
+  <meta name="description" content="Profesional con más de 15 años optimizando operaciones Telecom/NOC, especializado en ETL, SQL, BigQuery, Business Intelligence e IA Aplicada." />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Configuración para permitir clases de modo oscuro con Tailwind
+    tailwind.config = { darkMode: 'class' }
+  </script>
 
-  <!-- Datos estructurados para motores de búsqueda e IA de reclutamiento (ATS) -->
+  <!-- Datos estructurados para motores de búsqueda y ATS -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "Person",
-    "name": "{{ cv.nombre }}",
-    "jobTitle": "{{ cv.titulo }}",
-    "email": "mailto:{{ cv.email }}",
+    "name": "Luis Alberto Ruiz Diaz",
+    "jobTitle": "Analista Funcional & de Datos | BI, SQL & Automatización",
+    "email": "mailto:luiggi.ruiz.diaz@gmail.com",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Ciudadela",
@@ -23,8 +26,8 @@
       "addressCountry": "AR"
     },
     "sameAs": [
-      "{{ cv.linkedin }}",
-      "{{ cv.github }}"
+      "https://www.linkedin.com/in/lrd70",
+      "https://github.com/Lwiggi"
     ],
     "knowsAbout": [
       "Data Analytics", "Business Intelligence", "SQL", "Google BigQuery",
@@ -43,199 +46,352 @@
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased selection:bg-blue-900 selection:text-white">
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 antialiased transition-colors duration-200 selection:bg-blue-900 selection:text-white">
 
-  <!-- Barra superior de navegación rápida -->
-  <header class="no-print sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between text-sm">
-      <a href="#" class="font-bold text-slate-900 tracking-tight">LRD <span class="text-blue-800 font-medium">| Data & Functional</span></a>
-      <nav class="hidden md:flex items-center gap-6 text-slate-600 font-medium">
-        <a href="#perfil" class="hover:text-blue-800">Perfil</a>
-        <a href="#skills" class="hover:text-blue-800">Competencias</a>
-        <a href="#experiencia" class="hover:text-blue-800">Experiencia</a>
-        <a href="#proyectos" class="hover:text-blue-800">Proyectos</a>
-        <a href="#certificaciones" class="hover:text-blue-800">Certificaciones</a>
+  <!-- Header con Logo, Foto en miniatura y Switch de Tema -->
+  <header class="no-print sticky top-0 z-30 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between text-sm">
+      <div class="flex items-center gap-3">
+        <!-- Foto miniatura al lado del logo -->
+        <img src="lrd.jpg" alt="Luis Alberto Ruiz Diaz" onerror="this.style.display='none'" class="w-9 h-9 rounded-full object-cover border border-blue-900/30 shadow-xs" />
+        <a href="#" class="font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-1.5">
+          LRD <span class="text-blue-800 dark:text-blue-400 font-medium text-xs sm:text-sm">| Data & Functional</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6 text-slate-600 dark:text-slate-300 font-medium">
+        <a href="#perfil" class="hover:text-blue-800 dark:hover:text-blue-400">Perfil</a>
+        <a href="#skills" class="hover:text-blue-800 dark:hover:text-blue-400">Competencias</a>
+        <a href="#experiencia" class="hover:text-blue-800 dark:hover:text-blue-400">Experiencia</a>
+        <a href="#proyectos" class="hover:text-blue-800 dark:hover:text-blue-400">Proyectos</a>
+        <a href="#certificaciones" class="hover:text-blue-800 dark:hover:text-blue-400">Certificaciones</a>
       </nav>
-      <button onclick="window.print()" class="bg-blue-900 hover:bg-blue-800 text-white px-3.5 py-1.5 rounded-md font-medium text-xs transition cursor-pointer">
-        Guardar PDF (ATS)
-      </button>
+
+      <div class="flex items-center gap-3">
+        <!-- Botón Switch Tema Claro / Oscuro -->
+        <button id="theme-toggle" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition cursor-pointer" title="Cambiar tema">
+          <svg id="theme-icon-light" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round5" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+          <svg id="theme-icon-dark" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
+        <button onclick="window.print()" class="bg-blue-900 hover:bg-blue-800 dark:bg-blue-700 dark:hover:bg-blue-600 text-white px-3 py-1.5 rounded-md font-medium text-xs transition cursor-pointer">
+          PDF (ATS)
+        </button>
+      </div>
     </div>
   </header>
 
   <main class="max-w-5xl mx-auto px-4 sm:px-6 py-10 space-y-10">
 
-    <!-- Cabecera Ejecutiva -->
-    <section id="perfil" class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-sm">
-      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 border-b border-slate-100 pb-6">
-        <div>
-          <span class="inline-block text-xs font-semibold uppercase tracking-wider text-blue-800 bg-blue-50 px-2.5 py-1 rounded mb-2">
-            Disponible para roles de Análisis de Datos / BI / Análisis Funcional
-          </span>
-          <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">{{ cv.nombre }}</h1>
-          <p class="text-lg font-medium text-blue-900 mt-1">{{ cv.titulo }}</p>
-          <p class="text-sm text-slate-500 mt-2">{{ cv.ubicacion }}</p>
+    <!-- Cabecera Principal con Foto Grande -->
+    <section id="perfil" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm transition-colors">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 border-b border-slate-100 dark:border-slate-800 pb-6">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+          <!-- Foto de perfil grande -->
+          <img src="lrd.jpg" alt="Luis Alberto Ruiz Diaz" onerror="this.src='https://ui-avatars.com/api/?name=Luis+Ruiz+Diaz&background=0F172A&color=fff'" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-2 border-blue-900/20 dark:border-blue-500/30 shadow-md shrink-0" />
+          <div>
+            <span class="inline-block text-xs font-semibold uppercase tracking-wider text-blue-800 dark:text-blue-400 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-1 rounded mb-2">
+              Disponible para roles de Análisis de Datos / BI / Análisis Funcional
+            </span>
+            <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">Luis Alberto Ruiz Diaz</h1>
+            <p class="text-lg font-medium text-blue-900 dark:text-blue-400 mt-1">Analista Funcional & de Datos | BI, SQL & Automatización</p>
+            <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Ciudadela, Buenos Aires, Argentina</p>
+          </div>
         </div>
-        <div class="flex flex-wrap md:flex-col gap-2 text-sm">
-          <a href="mailto:{{ cv.email }}" class="inline-flex items-center gap-2 text-slate-700 hover:text-blue-800 font-medium">
-            <span>✉</span> {{ cv.email }}
+        <div class="flex flex-wrap md:flex-col gap-2 text-sm shrink-0">
+          <a href="mailto:luiggi.ruiz.diaz@gmail.com" class="inline-flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-blue-800 dark:hover:text-blue-400 font-medium">
+            <span>✉</span> luiggi.ruiz.diaz@gmail.com
           </a>
-          <a href="{{ cv.linkedin }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-slate-700 hover:text-blue-800 font-medium">
+          <a href="https://www.linkedin.com/in/lrd70" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-blue-800 dark:hover:text-blue-400 font-medium">
             <span>in</span> linkedin.com/in/lrd70
           </a>
-          <a href="{{ cv.github }}" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-slate-700 hover:text-blue-800 font-medium">
+          <a href="https://github.com/Lwiggi" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-slate-700 dark:text-slate-300 hover:text-blue-800 dark:hover:text-blue-400 font-medium">
             <span>⌘</span> github.com/Lwiggi
           </a>
         </div>
       </div>
 
-      <!-- Resumen -->
-      <p class="mt-6 text-slate-700 leading-relaxed text-[15px]">
-        {{ cv.resumen }}
+      <p class="mt-6 text-slate-700 dark:text-slate-300 leading-relaxed text-[15px]">
+        Profesional con sólida trayectoria en operaciones técnicas de misión crítica (NOC), logística de materiales y soporte funcional en Telecomunicaciones. Especializado en transformar datos operativos dispersos en indicadores ejecutivos mediante procesos ETL, consultas avanzadas en SQL/BigQuery y tableros de Business Intelligence. Nexo efectivo entre áreas de negocio, operación y desarrollo (Product Backlog / OSS), complementado con formación en desarrollo web y flujos modernos con Inteligencia Artificial.
       </p>
 
-      <!-- Tarjetas KPI -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
-        {% for kpi in cv.kpis %}
-        <div class="bg-slate-50 border border-slate-200/80 rounded-lg p-3.5">
-          <div class="text-xl font-bold text-blue-900">{{ kpi.valor }}</div>
-          <div class="text-xs text-slate-600 mt-0.5 leading-snug">{{ kpi.etiqueta }}</div>
+        <div class="bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 rounded-lg p-3.5">
+          <div class="text-xl font-bold text-blue-900 dark:text-blue-400">+15 años</div>
+          <div class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Experiencia en Telecom / NOC</div>
         </div>
-        {% endfor %}
+        <div class="bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 rounded-lg p-3.5">
+          <div class="text-xl font-bold text-blue-900 dark:text-blue-400">ETL & BI</div>
+          <div class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">BigQuery, SQL, Power BI & Looker</div>
+        </div>
+        <div class="bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 rounded-lg p-3.5">
+          <div class="text-xl font-bold text-blue-900 dark:text-blue-400">+20</div>
+          <div class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Certificaciones en Datos, Dev e IA</div>
+        </div>
+        <div class="bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 rounded-lg p-3.5">
+          <div class="text-xl font-bold text-blue-900 dark:text-blue-400">Key User</div>
+          <div class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Ticketeras OSS, ITSM & Backlog</div>
+        </div>
       </div>
     </section>
 
-    <!-- Matriz de Competencias -->
-    <section id="skills" class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-sm">
-      <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-2 mb-5">
+    <!-- Skills -->
+    <section id="skills" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm transition-colors">
+      <h2 class="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-200 dark:border-slate-800 pb-2 mb-5">
         Competencias Técnicas y Funcionales
       </h2>
       <div class="grid md:grid-cols-3 gap-6">
-        {% for categoria, items in cv.skills.items() %}
         <div>
-          <h3 class="text-sm font-bold text-blue-900 mb-3">{{ categoria }}</h3>
-          <ul class="space-y-1.5">
-            {% for skill in items %}
-            <li class="text-sm text-slate-700 flex items-center gap-2">
-              <span class="w-1.5 h-1.5 rounded-full bg-blue-700 shrink-0"></span>
-              <span>{{ skill }}</span>
-            </li>
-            {% endfor %}
+          <h3 class="text-sm font-bold text-blue-900 dark:text-blue-400 mb-3">Datos & Business Intelligence</h3>
+          <ul class="space-y-1.5 text-sm text-slate-700 dark:text-slate-300">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-700 dark:bg-blue-400"></span>SQL (Modelado & Conditional JOINs)</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-700 dark:bg-blue-400"></span>Google BigQuery</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-700 dark:bg-blue-400"></span>Power BI & SQL Server</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-700 dark:bg-blue-400"></span>Looker Studio (Data Studio)</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-700 dark:bg-blue-400"></span>Procesos ETL & KPIs Ejecutivos</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-700 dark:bg-blue-400"></span>Data Analytics & Science</li>
           </ul>
         </div>
-        {% endfor %}
+        <div>
+          <h3 class="text-sm font-bold text-blue-900 dark:text-blue-400 mb-3">Análisis Funcional & Operaciones</h3>
+          <ul class="space-y-1.5 text-sm text-slate-700 dark:text-slate-300">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-700 dark:bg-blue-400"></span>Análisis Funcional & Mejora Continua</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-700 dark:bg-blue-400"></span>Gestión de Product Backlog</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-700 dark:bg-blue-400"></span>Key User OSS / Ticketeras</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-700 dark:bg-blue-400"></span>BMC Helix ITSM & Salesforce</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-700 dark:bg-blue-400"></span>SAP CRM & Auditoría de Stock</li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold text-blue-900 dark:text-blue-400 mb-3">Desarrollo & IA Aplicada</h3>
+          <ul class="space-y-1.5 text-sm text-slate-700 dark:text-slate-300">
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-700 dark:bg-blue-400"></span>Python & Django / FastAPI</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-700 dark:bg-blue-400"></span>JavaScript / React / Node.js</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-700 dark:bg-blue-400"></span>HTML5 / CSS3 / Git</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-700 dark:bg-blue-400"></span>Prompt Engineering & Contexto</li>
+            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-blue-700 dark:bg-blue-400"></span>Agentes IA, RAG & MCP</li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <!-- Experiencia Profesional -->
-    <section id="experiencia" class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-sm">
-      <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-2 mb-6">
+    <!-- Experiencia -->
+    <section id="experiencia" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm transition-colors">
+      <h2 class="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-200 dark:border-slate-800 pb-2 mb-6">
         Experiencia Profesional
       </h2>
       <div class="space-y-7">
-        {% for exp in cv.experiencia %}
-        <article class="relative pl-4 border-l-2 border-blue-900/30">
+        <article class="relative pl-4 border-l-2 border-blue-900/30 dark:border-blue-500/40">
           <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
-            <h3 class="text-base font-bold text-slate-900">{{ exp.rol }}</h3>
-            <span class="text-xs font-semibold text-blue-900 bg-blue-50 px-2.5 py-0.5 rounded shrink-0">
-              {{ exp.periodo }}
-            </span>
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Analista Sr. Funcional, Datos y Administración Técnica NOC</h3>
+            <span class="text-xs font-semibold text-blue-900 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-0.5 rounded shrink-0">Ene 2011 – Actualidad</span>
           </div>
-          <div class="text-sm font-medium text-slate-600 mt-0.5">
-            {{ exp.empresa }} · <span class="text-slate-400 font-normal">{{ exp.ubicacion }}</span>
-          </div>
-          <ul class="mt-2.5 space-y-1.5 text-sm text-slate-700 list-disc list-inside">
-            {% for logro in exp.logros %}
-            <li class="leading-relaxed">{{ logro }}</li>
-            {% endfor %}
+          <div class="text-sm font-medium text-slate-600 dark:text-slate-400 mt-0.5">Personal (Telecom Argentina) · <span class="text-slate-400 dark:text-slate-500 font-normal">C.A.B.A., Argentina</span></div>
+          <ul class="mt-2.5 space-y-1.5 text-sm text-slate-700 dark:text-slate-300 list-disc list-inside">
+            <li>Diseño y ejecución de procesos ETL para la generación de indicadores ejecutivos y tableros de gestión operativa del área NOC.</li>
+            <li>Analista funcional y Key User de plataformas de ticketing (BMC Helix ITSM / Salesforce), liderando soporte a la operación y mejora continua.</li>
+            <li>Stakeholder de negocio frente a equipos de desarrollo OSS y gestión de Product Backlog para evolución de herramientas internas.</li>
+            <li>Control analítico de abastecimiento, trazabilidad de stock de equipamiento Spare en Bases Técnicas y seguimiento de servicios técnicos.</li>
           </ul>
         </article>
-        {% endfor %}
+
+        <article class="relative pl-4 border-l-2 border-blue-900/30 dark:border-blue-500/40">
+          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Analista de Auditoría de Materiales y Stock</h3>
+            <span class="text-xs font-semibold text-blue-900 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-0.5 rounded shrink-0">Jul 2008 – Dic 2010</span>
+          </div>
+          <div class="text-sm font-medium text-slate-600 dark:text-slate-400 mt-0.5">Cablevisión – Fibertel · <span class="text-slate-400 dark:text-slate-500 font-normal">C.A.B.A., Argentina</span></div>
+          <ul class="mt-2.5 space-y-1.5 text-sm text-slate-700 dark:text-slate-300 list-disc list-inside">
+            <li>Análisis de inventarios, conciliación de diferencias y carga/control de movimientos de stock en SAP CRM.</li>
+            <li>Elaboración de informes técnicos de auditoría en Bases Técnicas para reducción de desvíos operativos.</li>
+          </ul>
+        </article>
+
+        <article class="relative pl-4 border-l-2 border-blue-900/30 dark:border-blue-500/40">
+          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Coordinador y Despachante de Operaciones Técnicas</h3>
+            <span class="text-xs font-semibold text-blue-900 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-0.5 rounded shrink-0">Oct 2004 – Jul 2008</span>
+          </div>
+          <div class="text-sm font-medium text-slate-600 dark:text-slate-400 mt-0.5">Cablevisión – Fibertel (PRIMA) · <span class="text-slate-400 dark:text-slate-500 font-normal">AMBA e Interior, Argentina</span></div>
+          <ul class="mt-2.5 space-y-1.5 text-sm text-slate-700 dark:text-slate-300 list-disc list-inside">
+            <li>Planificación de hojas de ruta, coordinación de visitas técnicas domiciliarias y seguimiento de KPIs de cumplimiento en CRM.</li>
+            <li>Control de recupero y disponibilidad de equipamiento técnico en campo.</li>
+          </ul>
+        </article>
+
+        <article class="relative pl-4 border-l-2 border-blue-900/30 dark:border-blue-500/40">
+          <div class="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+            <h3 class="text-base font-bold text-slate-900 dark:text-white">Trayectoria Técnica Previa (Telecomunicaciones & Soporte IT)</h3>
+            <span class="text-xs font-semibold text-blue-900 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/60 px-2.5 py-0.5 rounded shrink-0">1992 – 2004</span>
+          </div>
+          <div class="text-sm font-medium text-slate-600 dark:text-slate-400 mt-0.5">ITETE, INANCON, Sirti Argentina, Clínica Privada Provincial · <span class="text-slate-400 dark:text-slate-500 font-normal">Buenos Aires</span></div>
+          <ul class="mt-2.5 space-y-1.5 text-sm text-slate-700 dark:text-slate-300 list-disc list-inside">
+            <li>Soporte técnico en área Sistemas (redes, bases de datos y terminales), implementación de servicios ADSL y mantenimiento de infraestructura de telecomunicaciones.</li>
+          </ul>
+        </article>
       </div>
     </section>
 
-    <!-- Proyectos y Dashboards -->
-    <section id="proyectos" class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-sm">
-      <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-2 mb-5">
+    <!-- Proyectos -->
+    <section id="proyectos" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm transition-colors">
+      <h2 class="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-200 dark:border-slate-800 pb-2 mb-5">
         Dashboards y Proyectos Aplicados
       </h2>
       <div class="grid md:grid-cols-3 gap-4">
-        {% for proy in cv.proyectos %}
-        <div class="border border-slate-200 rounded-lg p-4 flex flex-col justify-between hover:border-blue-400 transition">
+        <div class="border border-slate-200 dark:border-slate-800 rounded-lg p-4 flex flex-col justify-between hover:border-blue-400 dark:hover:border-blue-500 transition bg-slate-50/50 dark:bg-slate-800/30">
           <div>
-            <span class="text-[11px] font-semibold uppercase tracking-wider text-blue-800">{{ proy.categoria }}</span>
-            <h3 class="font-bold text-slate-900 mt-1">{{ proy.nombre }}</h3>
-            <p class="text-xs text-slate-600 mt-2 leading-relaxed">{{ proy.descripcion }}</p>
+            <span class="text-[11px] font-semibold uppercase tracking-wider text-blue-800 dark:text-blue-400">Business Intelligence</span>
+            <h3 class="font-bold text-slate-900 dark:text-white mt-1">Dashboard Ejecutivo en Looker Studio</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">Reporte interactivo de visualización de métricas y análisis de datos construido en Google Looker Studio.</p>
           </div>
-          <div class="mt-4 pt-3 border-t border-slate-100">
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
             <div class="flex flex-wrap gap-1.5 mb-3">
-              {% for tag in proy.tags %}
-              <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded">{{ tag }}</span>
-              {% endfor %}
+              <span class="text-[11px] bg-slate-200/70 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded">Looker Studio</span>
+              <span class="text-[11px] bg-slate-200/70 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded">BI</span>
+            </div>
+            <a href="https://datastudio.google.com/reporting/a44ab54d-f0c4-4798-86a5-abb6981a8fab" target="_blank" rel="noopener" class="text-xs font-semibold text-blue-800 dark:text-blue-400 hover:underline">Ver demo →</a>
+          </div>
+        </div>
+
+        <div class="border border-slate-200 dark:border-slate-800 rounded-lg p-4 flex flex-col justify-between hover:border-blue-400 dark:hover:border-blue-500 transition bg-slate-50/50 dark:bg-slate-800/30">
+          <div>
+            <span class="text-[11px] font-semibold uppercase tracking-wider text-blue-800 dark:text-blue-400">Desarrollo Web</span>
+            <h3 class="font-bold text-slate-900 dark:text-white mt-1">Gestor de Reclamos</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">Aplicación web para registro, seguimiento y gestión de reclamos desplegada en Vercel.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              <span class="text-[11px] bg-slate-200/70 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded">Web App</span>
+              <span class="text-[11px] bg-slate-200/70 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded">Vercel</span>
             </div>
             <div class="flex items-center gap-3 text-xs font-semibold">
-              <a href="{{ proy.url }}" target="_blank" rel="noopener" class="text-blue-800 hover:underline">Ver demo →</a>
-              {% if proy.repo %}
-              <a href="{{ proy.repo }}" target="_blank" rel="noopener" class="text-slate-600 hover:underline">Código GitHub</a>
-              {% endif %}
+              <a href="https://gestordereclamos.vercel.app/" target="_blank" rel="noopener" class="text-blue-800 dark:text-blue-400 hover:underline">Ver demo →</a>
+              <a href="https://github.com/Lwiggi/gestordereclamos" target="_blank" rel="noopener" class="text-slate-600 dark:text-slate-400 hover:underline">GitHub</a>
             </div>
           </div>
         </div>
-        {% endfor %}
+
+        <div class="border border-slate-200 dark:border-slate-800 rounded-lg p-4 flex flex-col justify-between hover:border-blue-400 dark:hover:border-blue-500 transition bg-slate-50/50 dark:bg-slate-800/30">
+          <div>
+            <span class="text-[11px] font-semibold uppercase tracking-wider text-blue-800 dark:text-blue-400">Desarrollo Web</span>
+            <h3 class="font-bold text-slate-900 dark:text-white mt-1">Portfolio / Proyecto Frontend</h3>
+            <p class="text-xs text-slate-600 dark:text-slate-400 mt-2 leading-relaxed">Sitio web responsive desarrollado y desplegado en Netlify como práctica de arquitectura frontend.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800">
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              <span class="text-[11px] bg-slate-200/70 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded">HTML/CSS/JS</span>
+              <span class="text-[11px] bg-slate-200/70 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded">Netlify</span>
+            </div>
+            <a href="https://com2017lrdiaz.netlify.app/" target="_blank" rel="noopener" class="text-xs font-semibold text-blue-800 dark:text-blue-400 hover:underline">Ver demo →</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Certificaciones Filtrables -->
-    <section id="certificaciones" class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-sm">
-      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-200 pb-3 mb-5">
-        <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wider">
+    <!-- Certificaciones -->
+    <section id="certificaciones" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm transition-colors">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-slate-200 dark:border-slate-800 pb-3 mb-5">
+        <h2 class="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider">
           Certificaciones y Formación Continua
         </h2>
         <div class="no-print flex flex-wrap gap-1.5 text-xs" id="filtros-cert">
-          <button data-filter="Todas" class="filter-btn bg-blue-900 text-white px-2.5 py-1 rounded font-medium cursor-pointer">Todas</button>
-          <button data-filter="Datos" class="filter-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-2.5 py-1 rounded font-medium cursor-pointer">Datos & BI</button>
-          <button data-filter="IA" class="filter-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-2.5 py-1 rounded font-medium cursor-pointer">IA</button>
-          <button data-filter="Funcional" class="filter-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-2.5 py-1 rounded font-medium cursor-pointer">Funcional</button>
-          <button data-filter="Dev" class="filter-btn bg-slate-100 text-slate-700 hover:bg-slate-200 px-2.5 py-1 rounded font-medium cursor-pointer">Desarrollo</button>
+          <button data-filter="Todas" class="filter-btn bg-blue-900 dark:bg-blue-700 text-white px-2.5 py-1 rounded font-medium cursor-pointer">Todas</button>
+          <button data-filter="Datos" class="filter-btn bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 px-2.5 py-1 rounded font-medium cursor-pointer">Datos & BI</button>
+          <button data-filter="IA" class="filter-btn bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 px-2.5 py-1 rounded font-medium cursor-pointer">IA</button>
+          <button data-filter="Funcional" class="filter-btn bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 px-2.5 py-1 rounded font-medium cursor-pointer">Funcional</button>
+          <button data-filter="Dev" class="filter-btn bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 px-2.5 py-1 rounded font-medium cursor-pointer">Desarrollo</button>
         </div>
       </div>
 
-      <div class="divide-y divide-slate-100" id="lista-certificaciones">
-        {% for cert in cv.certificaciones %}
-        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="{{ cert.categoria }}">
-          <div class="flex items-center gap-2.5">
-            <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-700 w-20 text-center shrink-0">
-              {{ cert.categoria }}
-            </span>
-            <span class="text-slate-800 font-medium">{{ cert.titulo }}</span>
-          </div>
-          <span class="text-xs text-slate-500 font-mono shrink-0">{{ cert.anio }}</span>
+      <div class="divide-y divide-slate-100 dark:divide-slate-800" id="lista-certificaciones">
+        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="Datos">
+          <div class="flex items-center gap-2.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-20 text-center shrink-0">Datos</span><span class="text-slate-800 dark:text-slate-200 font-medium">Advanced Data - Conditional JOINs en BigQuery</span></div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">2026</span>
         </div>
-        {% endfor %}
+        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="Datos">
+          <div class="flex items-center gap-2.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-20 text-center shrink-0">Datos</span><span class="text-slate-800 dark:text-slate-200 font-medium">Programa Completo Data Analytics (Módulos 1 a 5 + Certificación)</span></div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">2026</span>
+        </div>
+        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="Datos">
+          <div class="flex items-center gap-2.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-20 text-center shrink-0">Datos</span><span class="text-slate-800 dark:text-slate-200 font-medium">Advanced Analytics | Mobility Insights</span></div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">2026</span>
+        </div>
+        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="Datos">
+          <div class="flex items-center gap-2.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-20 text-center shrink-0">Datos</span><span class="text-slate-800 dark:text-slate-200 font-medium">Data Science vs Data Analytics</span></div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">2026</span>
+        </div>
+        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="IA">
+          <div class="flex items-center gap-2.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-20 text-center shrink-0">IA</span><span class="text-slate-800 dark:text-slate-200 font-medium">Especialización en IA: Agentes, MCP, RAG, Embeddings, Prompts y NotebookLM</span></div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">2026</span>
+        </div>
+        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="IA">
+          <div class="flex items-center gap-2.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-20 text-center shrink-0">IA</span><span class="text-slate-800 dark:text-slate-200 font-medium">Imaginá, creá y escalá con MásIA</span></div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">2026</span>
+        </div>
+        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="Datos">
+          <div class="flex items-center gap-2.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-20 text-center shrink-0">Datos</span><span class="text-slate-800 dark:text-slate-200 font-medium">Introducción a SQL para BigQuery</span></div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">2025</span>
+        </div>
+        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="Datos">
+          <div class="flex items-center gap-2.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-20 text-center shrink-0">Datos</span><span class="text-slate-800 dark:text-slate-200 font-medium">Data Modeler - Fundamentos de SQL</span></div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">2025</span>
+        </div>
+        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="Datos">
+          <div class="flex items-center gap-2.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-20 text-center shrink-0">Datos</span><span class="text-slate-800 dark:text-slate-200 font-medium">Google Data Studio (Looker Studio)</span></div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">2025</span>
+        </div>
+        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="Funcional">
+          <div class="flex items-center gap-2.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-20 text-center shrink-0">Funcional</span><span class="text-slate-800 dark:text-slate-200 font-medium">Certificación Interna - Product Backlog</span></div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">2023</span>
+        </div>
+        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="Datos">
+          <div class="flex items-center gap-2.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-20 text-center shrink-0">Datos</span><span class="text-slate-800 dark:text-slate-200 font-medium">Inteligencia de Negocios con Power BI y SQL Server 2019</span></div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">2022</span>
+        </div>
+        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="Dev">
+          <div class="flex items-center gap-2.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-20 text-center shrink-0">Dev</span><span class="text-slate-800 dark:text-slate-200 font-medium">Codo a Codo - React</span></div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">2022</span>
+        </div>
+        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="Dev">
+          <div class="flex items-center gap-2.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-20 text-center shrink-0">Dev</span><span class="text-slate-800 dark:text-slate-200 font-medium">Python Full Stack (EAALV) & BA Aprende Django</span></div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">2022</span>
+        </div>
+        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="Dev">
+          <div class="flex items-center gap-2.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-20 text-center shrink-0">Dev</span><span class="text-slate-800 dark:text-slate-200 font-medium">Master en JavaScript, Angular 8 y NodeJS (Udemy)</span></div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">2019</span>
+        </div>
+        <div class="cert-item py-2.5 flex items-center justify-between gap-4 text-sm" data-cat="Datos">
+          <div class="flex items-center gap-2.5"><span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 w-20 text-center shrink-0">Datos</span><span class="text-slate-800 dark:text-slate-200 font-medium">Microsoft Access Básico e Intermedio / Introducción a Programación (UNTREF)</span></div>
+          <span class="text-xs text-slate-500 font-mono shrink-0">2010</span>
+        </div>
       </div>
     </section>
 
-    <!-- Educación Formal -->
-    <section class="bg-white border border-slate-200 rounded-xl p-6 sm:p-8 shadow-sm">
-      <h2 class="text-lg font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-2 mb-4">
+    <!-- Educación -->
+    <section class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-6 sm:p-8 shadow-sm transition-colors">
+      <h2 class="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider border-b border-slate-200 dark:border-slate-800 pb-2 mb-4">
         Educación Formal
       </h2>
       <div class="grid sm:grid-cols-2 gap-4">
-        {% for edu in cv.educacion %}
         <div>
-          <h3 class="text-sm font-bold text-slate-900">{{ edu.titulo }}</h3>
-          <p class="text-xs text-slate-600 mt-0.5">{{ edu.institucion }} · {{ edu.periodo }}</p>
+          <h3 class="text-sm font-bold text-slate-900 dark:text-white">Bachiller en Gestión y Administración con Orientación en Comercio Exterior</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">Instituto Educativo Argentino · 2013 – 2015</p>
         </div>
-        {% endfor %}
+        <div>
+          <h3 class="text-sm font-bold text-slate-900 dark:text-white">Técnico Mecánico (Nivel Secundario)</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400 mt-0.5">E.N.E.T. N° 25 'Tte. 1ro. de Artillería Fray Luis Beltrán' · 1983 – 1987</p>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <footer class="no-print text-center text-xs text-slate-400 py-8">
-    {{ cv.nombre }} · Desarrollado en Python (FastAPI) & Tailwind CSS · Desplegado en Vercel
+  <footer class="no-print text-center text-xs text-slate-400 dark:text-slate-600 py-8">
+    Luis Alberto Ruiz Diaz · CV Web Optimizado para ATS y Recruiter Técnico · Vercel
   </footer>
 
+  <!-- Scripts para Filtros y Modo Oscuro -->
   <script>
+    // Lógica de Filtros de Certificaciones
     const buttons = document.querySelectorAll('.filter-btn');
     const items = document.querySelectorAll('.cert-item');
 
@@ -243,16 +399,37 @@
       btn.addEventListener('click', () => {
         const filter = btn.dataset.filter;
         buttons.forEach(b => {
-          b.classList.remove('bg-blue-900', 'text-white');
-          b.classList.add('bg-slate-100', 'text-slate-700');
+          b.classList.remove('bg-blue-900', 'dark:bg-blue-700', 'text-white');
+          b.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
         });
-        btn.classList.add('bg-blue-900', 'text-white');
-        btn.classList.remove('bg-slate-100', 'text-slate-700');
+        btn.classList.add('bg-blue-900', 'dark:bg-blue-700', 'text-white');
+        btn.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
 
         items.forEach(item => {
           item.style.display = (filter === 'Todas' || item.dataset.cat === filter) ? 'flex' : 'none';
         });
       });
+    });
+
+    // Lógica del Switch de Tema Claro / Oscuro
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const htmlElement = document.documentElement;
+
+    // Verificar preferencia guardada o sistema
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      htmlElement.classList.add('dark');
+    } else {
+      htmlElement.classList.remove('dark');
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      if (htmlElement.classList.contains('dark')) {
+        htmlElement.classList.remove('dark');
+        localStorage.theme = 'light';
+      } else {
+        htmlElement.classList.add('dark');
+        localStorage.theme = 'dark';
+      }
     });
   </script>
 </body>
